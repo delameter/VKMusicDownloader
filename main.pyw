@@ -139,7 +139,7 @@ class TechInfo(QWidget, tech_info.Ui_Form):
     @pyqtSlot(str)
     def set_hostname(self, hostname):
         self.label_4.setText("Hostname: " + hostname)
-
+        
     @pyqtSlot(str)
     def set_location(self, location):
         self.label_3.setText("Location: " + location)
@@ -220,7 +220,9 @@ class MainWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
 
 
     def Downloads(self):
-        try:  
+        try:
+            self.pushButton.setEnabled(False) 
+
             PATH = utils.get_path(self, self.action_7.isChecked(), QFileDialog)
             self.label_2.setText("Путь для скачивания: " + PATH)
 
@@ -256,11 +258,13 @@ class MainWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
 
         except Exception as e:
             QMessageBox.critical(self, "F*CK", str(e))
+            self.pushButton.setEnabled(True)
 
 
     @pyqtSlot()
     def finished_loader(self):
         QMessageBox.information(self, "Информация", "Аудиозаписи загружены")
+        self.pushButton.setEnabled(True)
 
     @pyqtSlot(str)
     def loading_audio(self, song_name):

@@ -20,6 +20,9 @@ TIME_OUT = 10
 # Юзер-агент пользователя
 HEADER = {'user-agent': 'VKAndroidApp/5.11.1-2316'}
 
+# Прокси от KateMobile
+PROXY_KATE = {'https' : 'https://proxy.katemobile.ru:3752'}
+
 # Мне было день генерировать receipt. 
 # По хорошему его можно получить тут(android.clients.google.com/c2dm/register3)
 #receipt = "GF54PiFkdbb:APA91bEgyuoeagtS_1avbyY-_6UPRQ5fCJZwbv016qlNY-84iM81bfJgzIc28Tq_U7rvCqWb04nCOlj1M5A2yvZ793cnF8uZHhvKoGeHv9IzmR2ysSkKCn3aAff01IYFEv5nZFf02_hkVfszB2TRJ21XTNaUtvYO9A"
@@ -116,7 +119,7 @@ def get_audio(refresh_token, path):
     }
 
     return requests.get(f'{path}method/audio.get', 
-      params=param, headers=HEADER,  timeout=TIME_OUT).json()
+      params=param, headers=HEADER, timeout=TIME_OUT).json()
 
   except Exception as e:
     return e
@@ -139,13 +142,32 @@ def get_catalog(refresh_token, path):
 
 def get_playlist(refresh_token, path):
   try:
+    param = {  
+      'access_token':refresh_token,
+      'owner_id':'',
+      'id':'',
+      'need_playlist':1,
+      'v': VK_API_VERSION
+    }
+
+    return requests.get(f'{path}method/execute.getPlaylist',
+      params=param, headers=HEADER, timeout=TIME_OUT).json()
+
+  except Exception as e:
+    return e
+
+
+def get_music_page(refresh_token, path):
+  try:
     param = {
-      'owner_id': '',  
+      'owner_id':'',
+      'func_v':3,
+      'need_playlists':1,
       'access_token':refresh_token,
       'v': VK_API_VERSION
     }
 
-    return requests.get(f'{path}method/audio.getPlaylists',
+    return requests.get(f'{path}method/execute.getMusicPage',
       params=param, headers=HEADER, timeout=TIME_OUT).json()
 
   except Exception as e:
