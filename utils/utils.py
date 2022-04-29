@@ -107,7 +107,7 @@ def get_user_agent(usage_application_name) -> str:
 
 
 def get_mp3_url(url) -> str:
-    if '.mp3?' in url:
+    if re.search(r'\.mp3\??', url):
         return url
 
     return
