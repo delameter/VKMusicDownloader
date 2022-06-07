@@ -95,7 +95,7 @@ def read_json(filename):
 
 
 def downloads_files_in_wget(url, filename, progress):
-    wget.download(url, filename, bar=progress)
+    wget.download(url, out=filename, bar=progress)
 
 
 def get_user_agent(usage_application_name) -> str:
@@ -107,7 +107,7 @@ def get_user_agent(usage_application_name) -> str:
 
 
 def get_mp3_url(url) -> str:
-    if re.search(r'\.mp3\??', url):
+    if '.mp3' in url:
         return url
 
-    return
+    return url

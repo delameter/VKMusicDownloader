@@ -61,11 +61,9 @@ class Statistic:
             return
 
     def set_user_id(self, user_id=None) -> dict:
-        if not self.is_sended:
-            return self.stats_data.update(dict(user_id=user_id))
+        return self.stats_data.update(dict(user_id=user_id)) if not self.is_sended else ...
 
 
 stat = Statistic(DONT_SENDING_STATS)
-
 
 __all__ = ['stat']
