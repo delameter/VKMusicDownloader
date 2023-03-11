@@ -29,7 +29,7 @@ class Config(metaclass=MetaSingleton):
     License = "https://github.com/soround/VKMusicDownloader/blob/master/LICENSE"
     SourceCode = "https://github.com/soround/VKMusicDownloader"
 
-    UseAnalytics = True
+    UseAnalytics = False
 
 
 config = Config()

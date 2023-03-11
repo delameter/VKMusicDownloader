@@ -16,7 +16,7 @@ from .window import mainwindow
 from .tech_info import TechInfo
 
 
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMessageBox, QFileDialog, QInputDialog
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot, Qt

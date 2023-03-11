@@ -93,7 +93,7 @@ class VKLightOauth:
         self.apiVersion = self.__param.get("v") or apiVersion
         self.url_param = {'v': self.apiVersion}
 
-        self.application_name = self.__param.get('application_name', 'android')
+        self.application_name = self.__param.get('application_name', 'Vika')
         self.oauth_data = {
             **self.oauth_param,
             **clients_credential.get(self.application_name)
